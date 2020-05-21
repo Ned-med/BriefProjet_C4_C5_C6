@@ -96,22 +96,32 @@ SELECT name FROM departments WHERE Code IN (SELECT department FROM employees gro
 ```
 ## 2.15 Très important - Sélectionnez le nom et le nom de famille des employés travaillant pour les ministères dont le budget est le deuxième plus bas.
 ```sql
+SELECT e.Name, e.LastName FROM Employees e WHERE e.Department = (SELECT sub.Code FROM (SELECT * FROM Departments d ORDER BY d.budget LIMIT 2) sub ORDER BY budget DESC LIMIT 1);
 ```
 ## 2.16 Ajoutez un nouveau service appelé "Quality assurance", avec un budget de 40 000 $ et le code de service 11. Et ajoutez un employé appelé "Mary Moore" dans ce département, avec le code SSN 847-21-9811.
 ```sql
+insert into departments values(11, 'Quality Assurance', 40000);
+insert into employees values(847219811, 'Mary', 'Moore', 11);
+
 ```
 ## 2.17 Réduire le budget de tous les départements de 10 %.
 ```sql
+update departments set budget = 0.9 * budget;
 ```
 ## 2.18 Réaffecter tous les employés du département de la recherche (code 77) au département informatique (code 14).
 ```sql
+update employees set department = 14 where department = 77;
 ```
 ## 2.19 Supprimer du tableau tous les employés du département informatique (code 14).
 ```sql
+delete from employees where department = 14;
 ```
 ## 2.20 Supprimer du tableau tous les employés qui travaillent dans des départements dont le budget est supérieur ou égal à 60 000 $.
 ```sql
+DELETE FROM employees WHERE departement IN (SELECT Code FROM departments WHERE Budget >= 60000 )
+
 ```
 ## 2.21 Supprimer du tableau tous les employés.
 ```sql
+delete from employees;
 ```
