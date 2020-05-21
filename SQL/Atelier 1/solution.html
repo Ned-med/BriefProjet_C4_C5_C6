@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>SOLUTION DE L'ATELIER 1</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+        <h1 id="solution-de-latelier-1">SOLUTION DE L'ATELIER 1</h1>
+<h2 id="q1-cr%c3%a9er-la-base-donn%c3%a9e-sous-nom-%22boutique%22">(Q1) Créer la base donnée sous nom &quot;boutique&quot;.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">CREATE</span> DATABESE boutique
+</div></code></pre>
+<h2 id="q2-cr%c3%a9ation-des-tables-manufacturers-products">(Q2) Création des tables (Manufacturers, Products).</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Manufacturers(
+Code <span class="hljs-built_in">INT</span> auto_increment,
+    <span class="hljs-keyword">Name</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">100</span>),
+    primary <span class="hljs-keyword">key</span>(Code)
+);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Products(
+Code <span class="hljs-built_in">INT</span> auto_increment,
+<span class="hljs-keyword">Name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">100</span>),
+Price <span class="hljs-built_in">float</span>,
+Manufacturer_code <span class="hljs-built_in">INT</span>,
+primary <span class="hljs-keyword">key</span>(Code),
+<span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(Manufacturer_code) <span class="hljs-keyword">references</span> manufacturers(Code)
+);
+</div></code></pre>
+<h2 id="q3-ins%c3%a9rer-dans-le-tableau-manufacturers-les-valeurs">(Q3) Insérer dans le tableau Manufacturers les valeurs :</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> manufacturers (<span class="hljs-keyword">Name</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'Sony'</span>), (<span class="hljs-string">'Creative Labs'</span>), (<span class="hljs-string">'Hewlett-Packard'</span>), (<span class="hljs-string">'Iomega'</span>), (<span class="hljs-string">'Fujitsu'</span>), (<span class="hljs-string">'Winchester'</span>);
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Code</th>
+<th style="text-align:left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:left">Sony</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:left">Creative Labs</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:left">Hewlett-Packard</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:left">Iomega</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:left">Fujitsu</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:left">Winchester</td>
+</tr>
+</tbody>
+</table>
+<h2 id="q4-ins%c3%a9rer-dans-le-tableau-products">(Q4) Insérer dans le tableau Products :</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> products (<span class="hljs-keyword">Name</span>, Price, Manufacturer_code) <span class="hljs-keyword">VALUES</span> 
+(<span class="hljs-string">'Hard drive'</span>, <span class="hljs-number">240.00</span>, <span class="hljs-number">5</span>),
+(<span class="hljs-string">'Memory'</span>, <span class="hljs-number">120.00</span>, <span class="hljs-number">6</span>),
+(<span class="hljs-string">'ZIP drive'</span>, <span class="hljs-number">150.00</span>, <span class="hljs-number">4</span>),
+(<span class="hljs-string">'Floppy disk'</span>, <span class="hljs-number">5.00</span>, <span class="hljs-number">6</span>),
+(<span class="hljs-string">'Monitor'</span>, <span class="hljs-number">240.00</span>, <span class="hljs-number">1</span>),
+(<span class="hljs-string">'DVD drive'</span>, <span class="hljs-number">180.00</span>, <span class="hljs-number">2</span>),
+(<span class="hljs-string">'CD drive'</span>, <span class="hljs-number">90.00</span>, <span class="hljs-number">2</span>),
+(<span class="hljs-string">'Printer'</span>, <span class="hljs-number">270.00</span>, <span class="hljs-number">3</span>),
+(<span class="hljs-string">'Toner cartridge'</span>, <span class="hljs-number">66.00</span>, <span class="hljs-number">3</span>),
+(<span class="hljs-string">'DVD burner'</span>, <span class="hljs-number">180.00</span>, <span class="hljs-number">2</span>) ;
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Code</th>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Price</th>
+<th style="text-align:center">Manufacturer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:left">Hard drive</td>
+<td style="text-align:left">240</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:left">Memory</td>
+<td style="text-align:left">120</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:left">ZIP drive</td>
+<td style="text-align:left">150</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:left">Floppy disk</td>
+<td style="text-align:left">5</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:left">Monitor</td>
+<td style="text-align:left">240</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:left">DVD drive</td>
+<td style="text-align:left">180</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:left">CD drive</td>
+<td style="text-align:left">90</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:left">Printer</td>
+<td style="text-align:left">270</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:left">Toner cartridge</td>
+<td style="text-align:left">66</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:left">DVD burner</td>
+<td style="text-align:left">180</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="q5-s%c3%a9lectionnez-les-noms-de-tous-les-produits-du-magasin">(Q5) Sélectionnez les noms de tous les produits du magasin.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Name</span> <span class="hljs-keyword">FROM</span> products;
+</div></code></pre>
+<h2 id="q6-s%c3%a9lectionner-les-noms-et-les-prix-de-tous-les-produits-du-magasin">(Q6) Sélectionner les noms et les prix de tous les produits du magasin.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Name</span>, Price <span class="hljs-keyword">FROM</span> products;
+</div></code></pre>
+<h2 id="q7-s%c3%a9lectionner-le-nom-des-produits-dont-le-prix-est-inf%c3%a9rieur-ou-%c3%a9gal-%c3%a0-200">(Q7) Sélectionner le nom des produits dont le prix est inférieur ou égal à 200 $.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Name</span> <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">WHERE</span> Price &lt;= <span class="hljs-number">200</span>;
+</div></code></pre>
+<h2 id="q8-s%c3%a9lectionnez-tous-les-produits-dont-le-prix-est-compris-entre-60-et-120-dollars">(Q8) Sélectionnez tous les produits dont le prix est compris entre 60 et 120 dollars.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">WHERE</span> Price <span class="hljs-keyword">between</span> <span class="hljs-number">60</span> <span class="hljs-keyword">and</span> <span class="hljs-number">120</span>;
+</div></code></pre>
+<h2 id="q9-s%c3%a9lectionnez-le-nom-et-le-prix-en-cents-cest-%c3%a0-dire-que-le-prix-doit-%c3%aatre-multipli%c3%a9-par-100">(Q9) Sélectionnez le nom et le prix en cents (c'est-à-dire que le prix doit être multiplié par 100).</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> Price*<span class="hljs-number">100</span>  <span class="hljs-keyword">AS</span> Price_Cents, <span class="hljs-keyword">Name</span> <span class="hljs-keyword">FROM</span> products ;
+</div></code></pre>
+<h2 id="q10-calculer-le-prix-moyen-de-tous-les-produits">(Q10) Calculer le prix moyen de tous les produits.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(Price) <span class="hljs-keyword">FROM</span> products ;
+</div></code></pre>
+<h2 id="q11-calculer-le-prix-moyen-de-tous-les-produits-dont-le-code-fabricant-est-%c3%a9gal-%c3%a0-2">(Q11) Calculer le prix moyen de tous les produits dont le code fabricant est égal à 2.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(Price) <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">WHERE</span> Manufacturer_code = <span class="hljs-number">2</span> ;
+</div></code></pre>
+<h2 id="q12-calculer-le-nombre-de-produits-dont-le-prix-est-sup%c3%a9rieur-ou-%c3%a9gal-%c3%a0-180-dollars">(Q12) Calculer le nombre de produits dont le prix est supérieur ou égal à 180 dollars.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">WHERE</span> price &gt;= <span class="hljs-number">180</span> ;
+</div></code></pre>
+<h2 id="q13-s%c3%a9lectionner-le-nom-et-le-prix-de-tous-les-produits-dont-le-prix-est-sup%c3%a9rieur-ou-%c3%a9gal-%c3%a0-180-dollars-et-trier-dabord-par-prix-par-ordre-d%c3%a9croissant-puis-par-nom-par-ordre-croissant">(Q13) Sélectionner le nom et le prix de tous les produits dont le prix est supérieur ou égal à 180 dollars, et trier d'abord par prix (par ordre décroissant), puis par nom (par ordre croissant).</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Name</span>, Price <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">WHERE</span> price &gt;= <span class="hljs-number">180</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> Price <span class="hljs-keyword">desc</span>,<span class="hljs-keyword">Name</span> <span class="hljs-keyword">Asc</span>;
+</div></code></pre>
+<h2 id="q14-s%c3%a9lectionnez-toutes-les-donn%c3%a9es-des-produits-y-compris-toutes-les-donn%c3%a9es-relatives-au-fabricant-de-chaque-produit">(Q14) Sélectionnez toutes les données des produits, y compris toutes les données relatives au fabricant de chaque produit.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> manufacturers <span class="hljs-keyword">on</span> products.Manufacturer_code = manufacturers.Code;
+</div></code></pre>
+<h2 id="q15-s%c3%a9lectionnez-le-nom-du-produit-le-prix-et-le-nom-du-fabricant-de-tous-les-produits">(Q15) Sélectionnez le nom du produit, le prix et le nom du fabricant de tous les produits.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> products.Name, products.Price, manufacturers.Name <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> manufacturers <span class="hljs-keyword">on</span> products.Manufacturer_code = manufacturers.Code;
+</div></code></pre>
+<h2 id="q16-s%c3%a9lectionnez-le-prix-moyen-des-produits-de-chaque-fabricant-en-indiquant-uniquement-le-code-du-fabricant">(Q16) Sélectionnez le prix moyen des produits de chaque fabricant, en indiquant uniquement le code du fabricant.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span>  <span class="hljs-keyword">AVG</span>(Price), Manufacturer_code <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Manufacturer_code;
+</div></code></pre>
+<h2 id="q17-s%c3%a9lectionnez-le-prix-moyen-des-produits-de-chaque-fabricant-en-indiquant-le-nom-du-fabricant">(Q17) Sélectionnez le prix moyen des produits de chaque fabricant, en indiquant le nom du fabricant.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span>  <span class="hljs-keyword">AVG</span>(Price), manufacturers.Name <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> manufacturers <span class="hljs-keyword">on</span> products.Manufacturer_code = manufacturers.Code <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Manufacturer_code;
+</div></code></pre>
+<h2 id="q18-s%c3%a9lectionnez-les-noms-des-fabricants-dont-les-produits-ont-un-prix-moyen-sup%c3%a9rieur-ou-%c3%a9gal-%c3%a0-150">(Q18) Sélectionnez les noms des fabricants dont les produits ont un prix moyen supérieur ou égal à 150 $.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span>  <span class="hljs-keyword">AVG</span>(Price), manufacturers.Name <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> manufacturers <span class="hljs-keyword">on</span> products.Manufacturer_code = manufacturers.Code <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Manufacturer_code  <span class="hljs-keyword">having</span> <span class="hljs-keyword">AVG</span>(Price) &gt;= <span class="hljs-number">150</span>;
+</div></code></pre>
+<h2 id="q19-s%c3%a9lectionnez-le-nom-et-le-prix-du-produit-le-moins-cher">(Q19) Sélectionnez le nom et le prix du produit le moins cher.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Name</span>, Price <span class="hljs-keyword">FROM</span> products <span class="hljs-keyword">WHERE</span> Price = (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">min</span>(Price) <span class="hljs-keyword">FROM</span> products);
+</div></code></pre>
+<h2 id="q20-s%c3%a9lectionnez-le-nom-de-chaque-fabricant-ainsi-que-le-nom-et-le-prix-de-son-produit-le-plus-cher">(Q20) Sélectionnez le nom de chaque fabricant ainsi que le nom et le prix de son produit le plus cher.</h2>
+<pre><code class="language-sql"><div><span class="hljs-comment">-- SELECT M.name, P.Name, P.Price FROM products P join manufacturers M on P.Manufacturer_code = M.Code group by Manufacturer_code ;</span>
+</div></code></pre>
+<h2 id="q21-ajouter-un-nouveau-produit--loudspeakers-70--manufacter-2">(Q21) Ajouter un nouveau produit : Loudspeakers, 70 $, manufacter 2</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> products (<span class="hljs-keyword">Name</span>, Price, Manufacturer_code) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'Loudspeakers'</span>, <span class="hljs-number">70.00</span>, <span class="hljs-number">2</span>);
+</div></code></pre>
+<h2 id="q22-mettre-%c3%a0-jour-le-nom-du-produit-8-en-%22laser-print%22">(Q22) Mettre à jour le nom du produit 8 en &quot;laser Print&quot;.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">UPDATE</span> products <span class="hljs-keyword">SET</span> <span class="hljs-keyword">Name</span> = <span class="hljs-string">'Laser Print'</span> <span class="hljs-keyword">WHERE</span> Code = <span class="hljs-number">8</span>;
+</div></code></pre>
+<h2 id="q23-appliquer-une-remise-de-10--%c3%a0-tous-les-produits">(Q23) Appliquer une remise de 10 % à tous les produits.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">UPDATE</span> products <span class="hljs-keyword">SET</span> Price = Price*<span class="hljs-number">0.9</span>;
+<span class="hljs-keyword">UPDATE</span> products <span class="hljs-keyword">SET</span> Price = Price - (Price*<span class="hljs-number">0.1</span>);
+</div></code></pre>
+<h2 id="q24-appliquer-une-remise-de-10--%c3%a0-tous-les-produits-dont-le-prix-est-sup%c3%a9rieur-ou-%c3%a9gal-%c3%a0-120">(Q24) Appliquer une remise de 10 % à tous les produits dont le prix est supérieur ou égal à 120 $.</h2>
+<pre><code class="language-sql"><div><span class="hljs-keyword">UPDATE</span> products <span class="hljs-keyword">SET</span> Price = Price*<span class="hljs-number">0.9</span> <span class="hljs-keyword">WHERE</span> Price &gt;= <span class="hljs-number">120</span>;
+</div></code></pre>
+
+    </body>
+    </html>
